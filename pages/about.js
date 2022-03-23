@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Footer } from '../components/footer'
 import { Links } from '../components/Links'
 import styles from '../styles/Home.module.css'
 
@@ -23,7 +22,6 @@ export default function Home() {
         </p>
         <Links/>
       </main>
-      <Footer />
     </div>
   )
 }

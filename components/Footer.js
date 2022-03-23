@@ -8,7 +8,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                Powered by{' '}
+                thanks by{' '}
                 <span className={styles.logo}>
                 </span>
             </a>
