@@ -1,12 +1,16 @@
 import { useCounter } from "hooks/useCounter";
+import { SWRConfig } from "swr";
 import "../styles/globals.css";
 
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 function MyApp({ Component, pageProps }) {
-  const counter = useCounter()
+  const counter = useCounter();
   return (
     <>
       <h1>hellllloooooo</h1>
-      <Component {...pageProps} {...counter} />
+      <SWRConfig value={{ fetcher }}>
+        <Component {...pageProps} {...counter} />
+      </SWRConfig>
     </>
   );
 }

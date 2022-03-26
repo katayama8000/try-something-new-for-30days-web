@@ -1,7 +1,7 @@
 import { useBgLightBlue } from 'hooks/useBgLightBlue'
 import Head from 'next/head'
 import { Links } from 'src/components/Links'
-import { Header } from '../components/Headrt'
+import { Header } from '../components/Header'
 import { Headline } from '../components/Hedline'
 import styles from '../styles/Home.module.css'
 
