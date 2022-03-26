@@ -9,7 +9,6 @@ import { Links } from "src/components/Links";
 import styles from "src/styles/Home.module.css";
 import useSWR from "swr";
 import axios from "axios";
-import { Profile } from "src/components/sample";
 import Link from "next/link";
 
 
@@ -25,7 +24,6 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-      <Profile/>
         <Headline title="index Page" page="index" />
         <button
           onClick={(e) => {
