@@ -32,6 +32,7 @@ export default function Home(props) {
         >
           button
         </button>
+        <h1 className="text-red-300 text-3xl font-bold underline">Hello world!</h1>
         <h1>{count}</h1>
         <Link href={`/post/1`}>
           <a>画面遷移1</a>

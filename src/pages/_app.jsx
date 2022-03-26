@@ -1,6 +1,7 @@
 import { useCounter } from "hooks/useCounter";
 import { SWRConfig } from "swr";
 import "../styles/globals.css";
+//import "tailwindcss/tailwind.css";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 function MyApp({ Component, pageProps }) {
