@@ -1,3 +1,4 @@
+import { useBgLightBlue } from 'hooks/useBgLightBlue'
 import Head from 'next/head'
 import { Links } from 'src/components/Links'
 import { Header } from '../components/Headrt'
@@ -6,7 +7,8 @@ import styles from '../styles/Home.module.css'
 
 export default function Home(props) {
   const { count, handleClick } = props
-  
+  useBgLightBlue();
+
   return (
     <div className={styles.container}>
       <Header/>

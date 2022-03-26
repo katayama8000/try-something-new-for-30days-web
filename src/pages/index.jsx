@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useBgLightBlue } from "hooks/useBgLightBlue";
 import { useCounter } from "hooks/useCounter";
 import Head from "next/head";
 import { useCallback, useEffect,useState } from "react";
@@ -10,16 +11,8 @@ import styles from "src/styles/Home.module.css";
 
 
 export default function Home(props) {
-  const { count , handleClick } = props
-  //const { count, handleClick } = useCounter()
-
-  useEffect(() => {
-    document.body.style.backgroundColor = "lightblue"
-
-    return () => {
-      document.body.style.backgroundColor = "";
-    }
-  },[])
+  const { count, handleClick } = props
+  useBgLightBlue()
   return (
     <div className={styles.container}>
       <Header />
