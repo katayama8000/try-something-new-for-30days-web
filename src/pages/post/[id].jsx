@@ -7,7 +7,6 @@ import { Header } from "src/components/Header";
 import { Links } from "src/components/Links";
 import styles from "src/styles/Home.module.css";
 import useSWR from "swr";
-import { Profile } from "src/components/sample";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -29,7 +28,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <Profile />
         <h1>{router.query.id}</h1>
         <Link href={`/post/1`}>
           <a>画面遷移1</a>
