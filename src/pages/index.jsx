@@ -1,8 +1,10 @@
 import Head from 'next/head'
-import { Header } from '../components/Headrt'
-import { Headline } from '../components/Hedline'
-import { Links } from '../components/Links'
-import styles from '../styles/Home.module.css'
+import { Footer } from 'src/components/Footer'
+import { Header } from 'src/components/Headrt'
+import { Headline } from 'src/components/Hedline'
+import { Links } from "src/components/Links";
+import styles from 'src/styles/Home.module.css'
+
 
 export default function Home() {
   return (
@@ -15,9 +17,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Headline title="About Page" page="about"/>
-        <Links/>
+        <Headline title="index Page" page="index" />
+        <Links />
       </main>
+      <Footer />
     </div>
   )
 }
