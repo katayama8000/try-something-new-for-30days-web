@@ -4,7 +4,7 @@ export function Header() {
     return (
         <header>
             <Link href="/">
-                <a>index</a>
+                <a>index | </a>
             </Link>
             <Link href="/about">
                 <a>about</a>

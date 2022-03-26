@@ -4,7 +4,9 @@ import { Header } from '../components/Headrt'
 import { Headline } from '../components/Hedline'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home(props) {
+  const { count, handleClick } = props
+  
   return (
     <div className={styles.container}>
       <Header/>
@@ -15,6 +17,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <button onClick={(e) => {
+          handleClick(e)
+        }}>add</button>
+        <h1>{ count }</h1>
         <Headline title="About Page" page="about"/>
         <Links/>
       </main>
