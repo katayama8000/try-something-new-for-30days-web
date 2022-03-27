@@ -1,21 +1,22 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useBgLightBlue } from "hooks/useBgLightBlue";
-import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
-import { Footer } from "src/components/Footer";
-import { Header } from "src/components/Header";
-import { Links } from "src/components/Links";
-import styles from "src/styles/Home.module.css";
-import useSWR from "swr";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { useBgLightBlue } from 'hooks/useBgLightBlue';
+import Head from 'next/head';
+import { useCallback, useEffect, useState } from 'react';
+import { Footer } from 'src/components/Footer';
+import { Header } from 'src/components/Header';
+import { Links } from 'src/components/Links';
+import styles from 'src/styles/Home.module.css';
+import useSWR from 'swr';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Home() {
   const router = useRouter();
   const { data, error } = useSWR(
-    "https://jsonplaceholder.typicode.com/posts/1"
+    'https://jsonplaceholder.typicode.com/posts/1'
   );
   console.log({ data, error });
   useBgLightBlue();
@@ -29,10 +30,10 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1>{router.query.id}</h1>
-        <Link href={`/post/1`}>
+        <Link href={'/post/1'}>
           <a>画面遷移1</a>
         </Link>
-        <Link href={`/post/2`}>
+        <Link href={'/post/2'}>
           <a>画面遷移2</a>
         </Link>
         <Links />

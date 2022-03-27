@@ -1,5 +1,5 @@
 
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 
 export function Links() {
     return (
@@ -32,5 +32,5 @@ export function Links() {
                 </p>
             </a>
         </div>
-    )
+    );
 }
