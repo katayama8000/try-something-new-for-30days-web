@@ -1,21 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useBgLightBlue } from "hooks/useBgLightBlue";
 import Head from "next/head";
-import { useCallback, useEffect,useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Footer } from "src/components/Footer";
 import { Header } from "src/components/Header";
 import { Headline } from "src/components/Hedline";
 import { Links } from "src/components/Links";
 import styles from "src/styles/Home.module.css";
-import useSWR from "swr";
-import axios from "axios";
 import Link from "next/link";
 import React from "react";
 
-
 export default function Home(props) {
-  const { count, handleClick } = props
-  useBgLightBlue()
+  const { count, handleClick } = props;
+  useBgLightBlue();
   return (
     <div className={styles.container}>
       <Header />
@@ -33,8 +29,13 @@ export default function Home(props) {
         >
           button
         </button>
-        <h1 className="text-purple-600 text-3xl font-bold underline">Hello world!</h1>
-        <h1>{count}</h1>
+        <h1 className="text-blue-400 text-3xl px-6 font-bold underline">
+          Hello world!
+        </h1>
+        <h1 className="underline text-red-200 font-bold">tailwind.css</h1>
+        <h1 className="text-3xl py-2 underline text-red-400">
+          The Counted Number Is {count}
+        </h1>
         <Link href={`/post/1`}>
           <a>画面遷移1</a>
         </Link>
