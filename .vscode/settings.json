@@ -2,5 +2,7 @@
   "editor.quickSuggestions": { "strings": true },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "eslint.validate": ["javascript"],
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

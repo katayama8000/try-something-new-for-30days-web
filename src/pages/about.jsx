@@ -1,12 +1,12 @@
-import { useBgLightBlue } from 'hooks/useBgLightBlue'
-import Head from 'next/head'
-import { Links } from 'src/components/Links'
-import { Header } from '../components/Header'
-import { Headline } from '../components/Hedline'
-import styles from '../styles/Home.module.css'
+import { useBgLightBlue } from 'hooks/useBgLightBlue';
+import Head from 'next/head';
+import { Links } from 'src/components/Links';
+import { Header } from '../components/Header';
+import { Headline } from '../components/Hedline';
+import styles from '../styles/Home.module.css';
 
 export default function Home(props) {
-  const { count, handleClick } = props
+  const { count, handleClick } = props;
   useBgLightBlue();
 
   return (
@@ -20,12 +20,12 @@ export default function Home(props) {
 
       <main className={styles.main}>
         <button onClick={(e) => {
-          handleClick(e)
+          handleClick(e);
         }}>add</button>
         <h1>{ count }</h1>
         <Headline title="About Page" page="about"/>
         <Links/>
       </main>
     </div>
-  )
+  );
 }

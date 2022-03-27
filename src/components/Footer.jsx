@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 
 export function Footer() {
     return (
@@ -14,5 +14,5 @@ export function Footer() {
             </a>
         </footer>
 
-    )
+    );
 }

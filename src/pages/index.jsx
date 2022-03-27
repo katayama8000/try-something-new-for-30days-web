@@ -1,13 +1,14 @@
-import { useBgLightBlue } from "hooks/useBgLightBlue";
-import Head from "next/head";
-import { useCallback, useEffect, useState } from "react";
-import { Footer } from "src/components/Footer";
-import { Header } from "src/components/Header";
-import { Headline } from "src/components/Hedline";
-import { Links } from "src/components/Links";
-import styles from "src/styles/Home.module.css";
-import Link from "next/link";
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import { useBgLightBlue } from 'hooks/useBgLightBlue';
+import Head from 'next/head';
+import { useCallback, useEffect, useState } from 'react';
+import { Footer } from 'src/components/Footer';
+import { Header } from 'src/components/Header';
+import { Headline } from 'src/components/Hedline';
+import { Links } from 'src/components/Links';
+import styles from 'src/styles/Home.module.css';
+import Link from 'next/link';
+import React from 'react';
 
 export default function Home(props) {
   const { count, handleClick } = props;
@@ -29,17 +30,17 @@ export default function Home(props) {
         >
           button
         </button>
-        <h1 className="px-6 text-3xl font-bold text-blue-400 underline">
+        <h1 className="px-6 text-1.5xl font-bold text-blue-400 underline">
           Hello world!!
         </h1>
-        <h1 className="py-2 font-bold text-red-200 underline">tailwind.css</h1>
-        <h1 className="py-2 text-3xl text-red-400 underline">
-          The Counted Number Is {count}
+        <h1 className="p-2 font-bold text-red-200 underline">tailwind.css</h1>
+        <h1 className="p-2 text-3xl text-red-400 underline">
+          The Counted Number is {count}
         </h1>
-        <Link href={`/post/1`}>
+        <Link href={'/post/1'}>
           <a>画面遷移1</a>
         </Link>
-        <Link href={`/post/2`}>
+        <Link href={'/post/2'}>
           <a>画面遷移2</a>
         </Link>
         <Links />

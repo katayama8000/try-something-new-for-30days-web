@@ -1,4 +1,5 @@
-import Link from 'next/link'
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import Link from 'next/link';
 
 export function Header() {
     return (
@@ -10,5 +11,5 @@ export function Header() {
                 <a>about</a>
             </Link>
         </header>
-    )
+    );
 }

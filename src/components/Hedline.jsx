@@ -1,4 +1,4 @@
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Home.module.css';
 
 export function Headline(props) {
     return (
@@ -12,5 +12,5 @@ export function Headline(props) {
                 <code className={styles.code}>pages/{props.page}</code>
             </p>
         </div>
-    )
+    );
 }
