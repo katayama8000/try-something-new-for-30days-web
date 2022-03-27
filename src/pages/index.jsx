@@ -33,7 +33,6 @@ export default function Home(props) {
         <h1 className="px-6 text-1.5xl font-bold text-blue-400 underline">
           Hello world!!
         </h1>
-        <h1 className="p-2 font-bold text-red-200 underline">tailwind.css</h1>
         <h1 className="p-2 text-3xl text-red-400 underline">
           The Counted Number is {count}
         </h1>
