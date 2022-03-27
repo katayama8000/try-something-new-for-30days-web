@@ -10,6 +10,7 @@ import styles from "src/styles/Home.module.css";
 import useSWR from "swr";
 import axios from "axios";
 import Link from "next/link";
+import React from "react";
 
 
 export default function Home(props) {
@@ -32,7 +33,7 @@ export default function Home(props) {
         >
           button
         </button>
-        <h1 className="text-red-300 text-3xl font-bold underline">Hello world!</h1>
+        <h1 className="text-purple-600 text-3xl font-bold underline">Hello world!</h1>
         <h1>{count}</h1>
         <Link href={`/post/1`}>
           <a>画面遷移1</a>
