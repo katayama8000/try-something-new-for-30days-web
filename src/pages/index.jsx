@@ -29,11 +29,11 @@ export default function Home(props) {
         >
           button
         </button>
-        <h1 className="text-blue-400 text-3xl px-6 font-bold underline">
-          Hello world!
+        <h1 className="px-6 text-3xl font-bold text-blue-400 underline">
+          Hello world!!
         </h1>
-        <h1 className="underline text-red-200 font-bold">tailwind.css</h1>
-        <h1 className="text-3xl py-2 underline text-red-400">
+        <h1 className="py-2 font-bold text-red-200 underline">tailwind.css</h1>
+        <h1 className="py-2 text-3xl text-red-400 underline">
           The Counted Number Is {count}
         </h1>
         <Link href={`/post/1`}>

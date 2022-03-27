@@ -1,8 +1,8 @@
 {
   "plugins": ["tailwindcss"],
-  "extends": ["plugin:tailwindcss/recommended","next/core-web-vitals"],
-   "parserOptions": {
-     "sourceType": "module",
-     "ecmaVersion": 2015
-   },
+  "extends": ["plugin:tailwindcss/recommended", "next/core-web-vitals"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2015
+  }
 }
