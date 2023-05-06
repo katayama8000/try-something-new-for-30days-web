@@ -24,6 +24,7 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/node": "^20.1.0",
     "tap": "^16.1.0"
   }
 }
