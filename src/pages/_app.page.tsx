@@ -1,8 +1,20 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
+import { auth } from '@firebase/firebase';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export default function App({ Component, pageProps }: AppProps) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log(user);
+      // サーバーサイドでカスタムクレームを設定する
+    } else {
+      console.log('no user');
+      // User is signed out
+      // ...
+    }
+  });
   return (
     <>
       <Head>
