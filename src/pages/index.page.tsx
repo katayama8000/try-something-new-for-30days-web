@@ -2,15 +2,70 @@ import Head from 'next/head';
 import { Button, Group } from '@mantine/core';
 import { db } from '@firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
+import axios from 'axios';
+import { auth } from '@firebase/firebase';
+import type { NextPage } from 'next';
+import { useState } from 'react';
+import Link from 'next/link';
 
-export default function Home() {
-  const handleAdd = () => {
-    const ret = addDoc(collection(db, 'users'), {
+const Home: NextPage = () => {
+  const [uid, setUid] = useState<string>('');
+  const [idToken, setIdToken] = useState<string>('');
+  const handleAdd = (): void => {
+    addDoc(collection(db, 'users'), {
       first: 'Ada',
       last: 'Lovelace',
       born: 1815,
     });
   };
+
+  const handleSetCustomClaim = async () => {
+    const response = await axios.post<{ uid: string }>('/api/setCustomClaim', {
+      uid,
+    });
+    console.log(response);
+  };
+
+  const handleVerifyIdToken = async () => {
+    console.log(idToken);
+    const response = await axios.post<{ uid: string }>('/api/verifyIdToken', {
+      idToken,
+    });
+    console.log(response);
+  };
+
+  const handleGetUserId = async () => {
+    if (!auth.currentUser) return;
+    const uid = auth.currentUser.uid;
+    console.log(uid);
+    setUid(uid);
+    const idToken = await auth.currentUser.getIdToken();
+    console.log(idToken);
+    setIdToken(idToken);
+  };
+
+  const handleGetUserInfo = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+    console.log(user);
+    const token = await user.getIdToken();
+    console.log(token);
+  };
+
+  const handleCheckCustomClaims = async () => {
+    if (!auth.currentUser) return;
+    const idToken = await auth.currentUser.getIdTokenResult();
+    console.log(idToken);
+    console.log(idToken.claims.admin);
+  };
+
+  const handleGetUserIdToken = async () => {
+    if (!auth.currentUser) return;
+    const token = await auth.currentUser.getIdToken();
+    console.log(token);
+    setIdToken(token);
+  };
+
   return (
     <>
       <Head>
@@ -21,11 +76,18 @@ export default function Home() {
       </Head>
       <main>
         <Group mt={50} position="center">
-          <Button size="xl" onClick={handleAdd}>
-            Welcome to Mantine!
-          </Button>
+          <Button onClick={handleAdd}>Welcome to Mantine!</Button>
+          <Button onClick={handleSetCustomClaim}>setCustomClaim</Button>
+          <Button onClick={handleVerifyIdToken}>verifyIdToken</Button>
+          <Button onClick={handleGetUserId}>getUserId</Button>
+          <Button onClick={handleGetUserIdToken}>getUserIdToken</Button>
+          <Button onClick={handleGetUserInfo}>getUserInfo</Button>
+          <Button onClick={handleCheckCustomClaims}>checkCustomClaims</Button>
+          <Link href={'sign-in'}>signIn</Link>
         </Group>
       </main>
     </>
   );
-}
+};
+
+export default Home;
