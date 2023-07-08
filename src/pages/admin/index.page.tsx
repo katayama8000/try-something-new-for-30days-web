@@ -1,5 +1,5 @@
 // admin顕現の人しか見れない画面
-import { auth, db } from '@firebase/firebase';
+import { auth, db } from '../../../firebase/firebase';
 import { Button } from '@mantine/core';
 import { addDoc, collection } from 'firebase/firestore';
 import { NextPage } from 'next';

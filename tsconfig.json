@@ -17,6 +17,8 @@
     "paths": {
       "@*": ["./src/*"],
       "@firebase/*": ["./firebase/*"],
+      "@components/*": ["./src/components/*"],
+      "@templates/*": ["./src/templates/*"],
 
     }
   },

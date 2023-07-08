@@ -1,9 +1,10 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
-import { auth } from '@firebase/firebase';
+import { auth } from '../../firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useState } from 'react';
+import React from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
@@ -25,7 +26,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <title>Page title</title>
-        <link rel="shortcut icon" href="/favicon.svg" />
+        {/* <link rel="shortcut icon" href="/favicon.svg" /> */}
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"

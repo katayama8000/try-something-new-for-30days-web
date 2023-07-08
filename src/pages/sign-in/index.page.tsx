@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@firebase/firebase';
+import { auth } from '../../../firebase/firebase';
 import Link from 'next/link';
 
 type FormValues = {
