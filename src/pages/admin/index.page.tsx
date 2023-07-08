@@ -19,7 +19,7 @@ const Admin: NextPage = () => {
       // await auth.currentUser.reload();
       const idTokenResult = await auth.currentUser.getIdTokenResult();
       console.log(idTokenResult.claims);
-      if (!idTokenResult.claims.admin) {
+      if (!!idTokenResult.claims.admin) {
         console.log('no admin');
         setIsAdmin(false);
       } else {
@@ -38,7 +38,7 @@ const Admin: NextPage = () => {
     // await auth.currentUser.reload();
     const idTokenResult = await auth.currentUser.getIdTokenResult();
     console.log(idTokenResult.claims);
-    if (!idTokenResult.claims.admin) {
+    if (!!idTokenResult.claims.admin) {
       console.log('no admin');
       push('/');
     }

@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
       const ret = await user.getIdTokenResult();
       await user.getIdToken(true);
       console.log(ret.claims.admin);
-      setTheme(ret.claims.admin ? 'dark' : 'light');
+      setTheme(!!ret.claims.admin ? 'dark' : 'light');
       // サーバーサイドでカスタムクレームを設定する
     } else {
       console.log('no user!!!!!!!!');
