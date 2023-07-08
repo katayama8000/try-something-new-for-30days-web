@@ -1,6 +1,7 @@
 // admin顕現の人しか見れない画面
-import { auth } from '@firebase/firebase';
+import { auth, db } from '@firebase/firebase';
 import { Button } from '@mantine/core';
+import { addDoc, collection } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -18,15 +19,19 @@ const Admin: NextPage = () => {
       // console.log(idToken);
       // await auth.currentUser.reload();
       const idTokenResult = await auth.currentUser.getIdTokenResult();
-      console.log(idTokenResult.claims);
-      if (!!idTokenResult.claims.admin) {
-        console.log('no admin');
-        setIsAdmin(false);
-      } else {
-        setIsAdmin(true);
-      }
+      console.log('wwww', idTokenResult.claims);
+      !!idTokenResult.claims.admin ? setIsAdmin(true) : setIsAdmin(true);
     })();
   }, []);
+
+  // mycollecttionというコレクションに書き込み
+  const handleWrite = async () => {
+    const docRef = await addDoc(collection(db, 'myCollection'), {
+      name: 'Tokyo',
+      country: 'Japan',
+    });
+    console.log('Document written with ID: ', docRef.id);
+  };
 
   const handleCheckCustomClaims = async () => {
     if (!auth.currentUser) return;
@@ -49,6 +54,7 @@ const Admin: NextPage = () => {
       <div>
         <h1>no admin</h1>
         <Link href="/">home</Link>
+        <Button onClick={handleWrite}>add</Button>
       </div>
     );
   return (
@@ -56,6 +62,7 @@ const Admin: NextPage = () => {
       <h1>admin</h1>
       <Link href="/">home</Link>
       <Button onClick={handleCheckCustomClaims}>check custom claims</Button>
+      <Button onClick={handleWrite}>add</Button>
     </div>
   );
 };
