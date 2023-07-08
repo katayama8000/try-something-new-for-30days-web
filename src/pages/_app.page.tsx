@@ -3,18 +3,24 @@ import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
 import { auth } from '@firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useState } from 'react';
 
 export default function App({ Component, pageProps }: AppProps) {
-  onAuthStateChanged(auth, (user) => {
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
-      console.log(user);
+      const ret = await user.getIdTokenResult();
+      await user.getIdToken(true);
+      console.log(ret.claims.admin);
+      setTheme(ret.claims.admin ? 'dark' : 'light');
       // サーバーサイドでカスタムクレームを設定する
     } else {
-      console.log('no user');
+      console.log('no user!!!!!!!!');
       // User is signed out
       // ...
     }
   });
+
   return (
     <>
       <Head>
@@ -31,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: 'dark',
+          colorScheme: theme,
         }}>
         <Component {...pageProps} />
       </MantineProvider>

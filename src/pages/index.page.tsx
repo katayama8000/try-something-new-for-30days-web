@@ -1,10 +1,7 @@
 import Head from 'next/head';
 import { Button, Group } from '@mantine/core';
-import { db } from '@firebase/firebase';
-import { collection, addDoc } from 'firebase/firestore';
 import axios from 'axios';
 import { auth } from '@firebase/firebase';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -75,6 +72,10 @@ const Home: NextPage = () => {
     setIdToken(token);
   };
 
+  const handleLogout = async () => {
+    await auth.signOut();
+  };
+
   return (
     <>
       <Head>
@@ -93,6 +94,7 @@ const Home: NextPage = () => {
           <Button onClick={handleGetUserInfo}>getUserInfo</Button>
           <Button onClick={handleCheckCustomClaims}>checkCustomClaims</Button>
           <Link href={'sign-in'}>signIn</Link>
+          <Button onClick={handleLogout}>logout</Button>
         </Group>
       </main>
     </>
