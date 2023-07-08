@@ -94,6 +94,7 @@ const Home: NextPage = () => {
           <Button onClick={handleGetUserInfo}>getUserInfo</Button>
           <Button onClick={handleCheckCustomClaims}>checkCustomClaims</Button>
           <Link href={'sign-in'}>signIn</Link>
+          <Link href={'admin'}>admin</Link>
           <Button onClick={handleLogout}>logout</Button>
         </Group>
       </main>
