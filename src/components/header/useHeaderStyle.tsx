@@ -3,13 +3,8 @@ import { createStyles, rem } from '@mantine/core';
 export const useHeaderStyles = createStyles((theme) => ({
   header: {
     paddingTop: theme.spacing.sm,
-    backgroundColor:
-      theme.colorScheme === 'dark'
-        ? theme.colors.dark[6]
-        : theme.colors.gray[0],
-    borderBottom: `${rem(1)} solid ${
-      theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[2]
-    }`,
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+    borderBottom: `${rem(1)} solid ${theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[2]}`,
     marginBottom: rem(120),
   },
 
@@ -24,8 +19,7 @@ export const useHeaderStyles = createStyles((theme) => ({
     transition: 'background-color 100ms ease',
 
     '&:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
     },
 
     [theme.fn.smallerThan('xs')]: {
@@ -40,8 +34,7 @@ export const useHeaderStyles = createStyles((theme) => ({
   },
 
   userActive: {
-    backgroundColor:
-      theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
   },
 
   tabs: {
@@ -60,19 +53,12 @@ export const useHeaderStyles = createStyles((theme) => ({
     backgroundColor: 'transparent',
 
     '&:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[5]
-          : theme.colors.gray[1],
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1],
     },
 
     '&[data-active]': {
-      backgroundColor:
-        theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
-      borderColor:
-        theme.colorScheme === 'dark'
-          ? theme.colors.dark[7]
-          : theme.colors.gray[2],
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+      borderColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[2],
     },
   },
 }));
