@@ -4,6 +4,7 @@ import { db } from '@firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import axios from 'axios';
 import { auth } from '@firebase/firebase';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -11,18 +12,21 @@ import Link from 'next/link';
 const Home: NextPage = () => {
   const [uid, setUid] = useState<string>('');
   const [idToken, setIdToken] = useState<string>('');
-  const handleAdd = (): void => {
-    addDoc(collection(db, 'users'), {
-      first: 'Ada',
-      last: 'Lovelace',
-      born: 1815,
-    });
-  };
 
   const handleSetCustomClaim = async () => {
     const response = await axios.post<{ uid: string }>('/api/setCustomClaim', {
       uid,
     });
+    console.log(response);
+  };
+
+  const handledeleteCustomClaims = async () => {
+    const response = await axios.post<{ uid: string }>(
+      '/api/deleteCustomClaim',
+      {
+        uid,
+      }
+    );
     console.log(response);
   };
 
@@ -54,9 +58,14 @@ const Home: NextPage = () => {
 
   const handleCheckCustomClaims = async () => {
     if (!auth.currentUser) return;
-    const idToken = await auth.currentUser.getIdTokenResult();
-    console.log(idToken);
-    console.log(idToken.claims.admin);
+    // const idToken = await auth.currentUser.getIdTokenResult();
+    // console.log(idToken.claims);
+    // 伝搬
+    const ret = await auth.currentUser.getIdToken(true);
+    // console.log(idToken);
+    // await auth.currentUser.reload();
+    const idTokenResult = await auth.currentUser.getIdTokenResult();
+    console.log(idTokenResult.claims);
   };
 
   const handleGetUserIdToken = async () => {
@@ -76,8 +85,8 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Group mt={50} position="center">
-          <Button onClick={handleAdd}>Welcome to Mantine!</Button>
           <Button onClick={handleSetCustomClaim}>setCustomClaim</Button>
+          <Button onClick={handledeleteCustomClaims}>deleteCustomClaims</Button>
           <Button onClick={handleVerifyIdToken}>verifyIdToken</Button>
           <Button onClick={handleGetUserId}>getUserId</Button>
           <Button onClick={handleGetUserIdToken}>getUserIdToken</Button>

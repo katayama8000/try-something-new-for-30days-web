@@ -21,9 +21,7 @@ export default async function handler(
   console.log(uid);
 
   try {
-    firebaseAdmin
-      .auth()
-      .setCustomUserClaims(uid, { admin: true, premium: true });
+    firebaseAdmin.auth().setCustomUserClaims(uid, null);
   } catch (e) {
     console.log(e);
     res.status(400).json({ text: 'error' });
