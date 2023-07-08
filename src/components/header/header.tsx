@@ -38,22 +38,25 @@ export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
   const [userMenuOpened, setUserMenuOpened] = useState<boolean>(false);
   const { push } = useRouter();
 
-  const selectTab = (tab: (typeof TABS)[number]) => {
+  const selectTab = async (tab: (typeof TABS)[number]) => {
     switch (tab) {
       case 'Home':
-        push('/home');
+        await push('/home');
         break;
-      case 'My30daysChallange':
-        push('/myChallenge');
+      case 'NewChallenge':
+        await push('/newChallenge');
+        break;
+      case 'My30daysChallenge':
+        await push('/myChallenge');
         break;
       case 'Account':
-        push('/account');
+        await push('/account');
         break;
       case 'Settings':
-        push('/settings');
+        await push('/settings');
         break;
       case 'Help':
-        push('/help');
+        await push('/help');
         break;
       default:
         break;

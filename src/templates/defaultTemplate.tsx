@@ -5,7 +5,8 @@ import { type FC, type ReactNode } from 'react';
 
 export const TABS = [
   'Home',
-  'My30daysChallange',
+  'NewChallenge',
+  'My30daysChallenge',
   'Account',
   'Settings',
   'Help',

@@ -37,3 +37,6 @@ next-env.d.ts
 # credentials
 key.json
 
+# yarn
+yarn-error.log
+
