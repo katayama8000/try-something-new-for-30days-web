@@ -1,11 +1,12 @@
 import React from 'react';
 import { DefaultTemplate } from '@templates/defaultTemplate';
 import { NextPage } from 'next';
+import { Title } from '@mantine/core';
 
 const NewChallenge: NextPage = () => {
   return (
     <DefaultTemplate>
-      <h1>NewChallenge</h1>
+      <Title>NewChallenge</Title>
     </DefaultTemplate>
   );
 };

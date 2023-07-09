@@ -1,4 +1,4 @@
-import { useState, FC } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Avatar, UnstyledButton, Group, Text, Menu, Tabs, Burger, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import {
@@ -26,27 +26,54 @@ export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
   const { classes, theme, cx } = useHeaderStyles();
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState<boolean>(false);
-  const { push } = useRouter();
+  const router = useRouter();
 
-  const selectTab = async (tab: (typeof TABS)[number]) => {
+  // pathを受け取って、tabに変換する
+  const pathToTab = (path: string): (typeof TABS)[number] => {
+    switch (path) {
+      case '/home':
+        return 'Home';
+        break;
+      case '/newChallenge':
+        return 'NewChallenge';
+        break;
+      case '/myChallenge':
+        return 'My30daysChallenge';
+        break;
+      case '/account':
+        return 'Account';
+        break;
+      case '/settings':
+        return 'Settings';
+        break;
+      case '/help':
+        return 'Help';
+        break;
+      default:
+        return 'Home';
+        break;
+    }
+  };
+
+  const tabToPushPath = async (tab: (typeof TABS)[number]): Promise<void> => {
     switch (tab) {
       case 'Home':
-        await push('/home');
+        await router.push('/home');
         break;
       case 'NewChallenge':
-        await push('/newChallenge');
+        await router.push('/newChallenge');
         break;
       case 'My30daysChallenge':
-        await push('/myChallenge');
+        await router.push('/myChallenge');
         break;
       case 'Account':
-        await push('/account');
+        await router.push('/account');
         break;
       case 'Settings':
-        await push('/settings');
+        await router.push('/settings');
         break;
       case 'Help':
-        await push('/help');
+        await router.push('/help');
         break;
       default:
         break;
@@ -124,9 +151,11 @@ export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
       </Container>
       <Container>
         <Tabs
-          defaultValue='Home'
+          value={pathToTab(router.pathname)}
           variant='outline'
-          onTabChange={(tab) => selectTab(tab as (typeof TABS)[number])}
+          onTabChange={(tab) => {
+            tabToPushPath(tab as (typeof TABS)[number]);
+          }}
           classNames={{
             root: classes.tabs,
             tabsList: classes.tabsList,
