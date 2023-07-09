@@ -3,7 +3,7 @@ import { Container } from '@mantine/core';
 import React from 'react';
 import { type FC, type ReactNode } from 'react';
 
-export const TABS = ['Home', 'NewChallenge', 'My30daysChallenge', 'Account', 'Settings', 'Help'] as const;
+export const TABS = ['Home', 'NewChallenge', 'My30daysChallenge', 'Account', 'Settings', 'Help', 'Admin'] as const;
 
 type defaultTemplateProps = {
   children: ReactNode;

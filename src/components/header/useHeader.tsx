@@ -22,6 +22,9 @@ export const useHeader = (router: NextRouter) => {
       case '/help':
         return 'Help';
         break;
+      case '/admin':
+        return 'Admin';
+        break;
       default:
         return 'Home';
         break;
@@ -47,6 +50,9 @@ export const useHeader = (router: NextRouter) => {
         break;
       case 'Help':
         await router.push('/help');
+        break;
+      case 'Admin':
+        await router.push('/admin');
         break;
       default:
         break;

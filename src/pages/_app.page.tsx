@@ -5,9 +5,11 @@ import { auth } from '../../firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useState } from 'react';
 import React from 'react';
+import router, { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const { push, isReady } = useRouter();
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       const ret = await user.getIdTokenResult();
@@ -27,10 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <title>Page title</title>
         {/* <link rel="shortcut icon" href="/favicon.svg" /> */}
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
+        <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width' />
       </Head>
 
       <MantineProvider
@@ -39,7 +38,8 @@ export default function App({ Component, pageProps }: AppProps) {
         theme={{
           /** Put your mantine theme override here */
           colorScheme: theme,
-        }}>
+        }}
+      >
         <Component {...pageProps} />
       </MantineProvider>
     </>

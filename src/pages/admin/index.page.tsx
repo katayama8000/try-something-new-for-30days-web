@@ -1,6 +1,7 @@
 // admin顕現の人しか見れない画面
 import { auth, db } from '../../../firebase/firebase';
 import { Button } from '@mantine/core';
+import { DefaultTemplate } from '@templates/defaultTemplate';
 import { addDoc, collection } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Link from 'next/link';
@@ -53,17 +54,17 @@ const Admin: NextPage = () => {
     return (
       <div>
         <h1>no admin</h1>
-        <Link href="/">home</Link>
+        <Link href='/'>home</Link>
         <Button onClick={handleWrite}>add</Button>
       </div>
     );
   return (
-    <div>
+    <DefaultTemplate>
       <h1>admin</h1>
-      <Link href="/">home</Link>
+      <Link href='/'>home</Link>
       <Button onClick={handleCheckCustomClaims}>check custom claims</Button>
       <Button onClick={handleWrite}>add</Button>
-    </div>
+    </DefaultTemplate>
   );
 };
 
