@@ -16,6 +16,7 @@ import { MantineLogo } from '@mantine/ds';
 import { useHeaderStyles } from './useHeaderStyle';
 import { useRouter } from 'next/router';
 import { TABS } from '@templates/defaultTemplate';
+import { useHeader } from '@components/header/useHeader';
 
 interface HeaderTabsProps {
   user: { name: string; image: string };
@@ -27,58 +28,7 @@ export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState<boolean>(false);
   const router = useRouter();
-
-  // pathを受け取って、tabに変換する
-  const pathToTab = (path: string): (typeof TABS)[number] => {
-    switch (path) {
-      case '/home':
-        return 'Home';
-        break;
-      case '/newChallenge':
-        return 'NewChallenge';
-        break;
-      case '/myChallenge':
-        return 'My30daysChallenge';
-        break;
-      case '/account':
-        return 'Account';
-        break;
-      case '/settings':
-        return 'Settings';
-        break;
-      case '/help':
-        return 'Help';
-        break;
-      default:
-        return 'Home';
-        break;
-    }
-  };
-
-  const tabToPushPath = async (tab: (typeof TABS)[number]): Promise<void> => {
-    switch (tab) {
-      case 'Home':
-        await router.push('/home');
-        break;
-      case 'NewChallenge':
-        await router.push('/newChallenge');
-        break;
-      case 'My30daysChallenge':
-        await router.push('/myChallenge');
-        break;
-      case 'Account':
-        await router.push('/account');
-        break;
-      case 'Settings':
-        await router.push('/settings');
-        break;
-      case 'Help':
-        await router.push('/help');
-        break;
-      default:
-        break;
-    }
-  };
+  const { pathToTab, tabToPushPath } = useHeader(router);
 
   const items = tabs.map((tab) => (
     <Tabs.Tab value={tab} key={tab}>
