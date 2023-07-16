@@ -1,7 +1,7 @@
 // admin顕現の人しか見れない画面
 import { auth, db } from '../../../firebase/firebase';
 import { Button } from '@mantine/core';
-import { DefaultTemplate } from '@templates/defaultTemplate';
+import { DefaultTemplate } from '../../templates/defaultTemplate';
 import { addDoc, collection } from 'firebase/firestore';
 import { NextPage } from 'next';
 import Link from 'next/link';

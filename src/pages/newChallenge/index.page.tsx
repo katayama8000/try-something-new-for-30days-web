@@ -1,5 +1,5 @@
 import React from 'react';
-import { DefaultTemplate } from '@templates/defaultTemplate';
+import { DefaultTemplate } from '../../templates/defaultTemplate';
 import { NextPage } from 'next';
 import { Title } from '@mantine/core';
 

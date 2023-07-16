@@ -1,6 +1,6 @@
 import { type NextPage } from 'next';
 import React from 'react';
-import { DefaultTemplate } from '@templates/defaultTemplate';
+import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 const MyChallenge: NextPage = () => {
   return (

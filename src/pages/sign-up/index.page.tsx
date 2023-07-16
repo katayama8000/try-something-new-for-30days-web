@@ -3,7 +3,6 @@ import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase/firebase';
-import { Notification } from '@mantine/core';
 import Link from 'next/link';
 
 type FormValues = {
@@ -34,27 +33,22 @@ const SignUp: NextPage = () => {
   };
 
   return (
-    <Box maw={300} mx="auto">
+    <Box maw={300} mx='auto'>
       <form onSubmit={form.onSubmit((values) => handleSignup(values))}>
+        <TextInput withAsterisk label='Email' placeholder='your@email.com' {...form.getInputProps('email')} />
         <TextInput
           withAsterisk
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps('email')}
-        />
-        <TextInput
-          withAsterisk
-          label="Password"
-          placeholder="your password"
-          type="password"
+          label='Password'
+          placeholder='your password'
+          type='password'
           {...form.getInputProps('password')}
         />
 
-        <Group position="right" mt="md">
-          <Button type="submit">Submit</Button>
+        <Group position='right' mt='md'>
+          <Button type='submit'>Submit</Button>
         </Group>
       </form>
-      <Link href="sign-in">signIn</Link>
+      <Link href='sign-in'>signIn</Link>
     </Box>
   );
 };
