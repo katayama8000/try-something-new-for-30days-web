@@ -79,6 +79,10 @@ const Home: NextPage = () => {
     sentry.captureException(new Error('error occured in client side'));
   };
 
+  const handleThrowError = () => {
+    throw new Error('error!!!!!!');
+  };
+
   return (
     <>
       <Head>
@@ -89,7 +93,12 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Group mt={50} position='center'>
-          <Button onClick={handleThrowSentryError}>throw sentry error</Button>
+          <Button onClick={handleThrowSentryError} color={'red'}>
+            throw sentry error
+          </Button>
+          <Button onClick={handleThrowError} color={'red'}>
+            throw error
+          </Button>
           <Button onClick={handleSetCustomClaim}>setCustomClaim</Button>
           <Button onClick={handledeleteCustomClaims}>deleteCustomClaims</Button>
           <Button onClick={handleVerifyIdToken}>verifyIdToken</Button>
