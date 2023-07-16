@@ -6,7 +6,7 @@ describe('SignUp', () => {
     expect(SignUp).toBeTruthy();
     const { getByText, getByTestId } = render(<SignUp />);
     // const submitButton = getByText('Submit');
-    const submitButton = getByTestId('submitButto');
+    const submitButton = getByTestId('submitButton');
     expect(submitButton).toBeTruthy();
   });
 });
