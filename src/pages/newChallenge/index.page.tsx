@@ -4,7 +4,7 @@ import { useForm } from '@mantine/form';
 import { addDoc, collection } from 'firebase/firestore';
 import type { NextPage } from 'next';
 
-import { db } from '../../../firebase/firebase';
+import { db } from '../../libs/firebase';
 import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 // 必要な項目

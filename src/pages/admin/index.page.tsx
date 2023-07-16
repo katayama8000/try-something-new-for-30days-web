@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-import { auth, db } from '../../../firebase/firebase';
+import { auth, db } from '../../libs/firebase';
 import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 const Admin: NextPage = () => {
