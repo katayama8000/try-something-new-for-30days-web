@@ -1,6 +1,5 @@
 import { Title } from '@mantine/core';
 import type { NextPage } from 'next';
-import React from 'react';
 
 import { DefaultTemplate } from '../../templates/defaultTemplate';
 

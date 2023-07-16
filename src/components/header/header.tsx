@@ -1,4 +1,4 @@
-import { Avatar, Burger, Container, Group, Menu, rem,Tabs, Text, UnstyledButton } from '@mantine/core';
+import { Avatar, Burger, Container, Group, Menu, rem, Tabs, Text, UnstyledButton } from '@mantine/core';
 import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
 import {
@@ -13,7 +13,7 @@ import {
   IconTrash,
 } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
-import {useState } from 'react';
+import { useState } from 'react';
 
 import type { TABS } from '../../templates/defaultTemplate';
 import { useHeader } from '../header/useHeader';
@@ -31,11 +31,13 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
   const router = useRouter();
   const { pathToTab, tabToPushPath } = useHeader(router);
 
-  const items = tabs.map((tab) => {return (
-    <Tabs.Tab value={tab} key={tab}>
-      {tab}
-    </Tabs.Tab>
-  )});
+  const items = tabs.map((tab) => {
+    return (
+      <Tabs.Tab value={tab} key={tab}>
+        {tab}
+      </Tabs.Tab>
+    );
+  });
 
   return (
     <div className={classes.header}>
@@ -49,8 +51,12 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
             width={260}
             position='bottom-end'
             transitionProps={{ transition: 'pop-top-right' }}
-            onClose={() => {return setUserMenuOpened(false)}}
-            onOpen={() => {return setUserMenuOpened(true)}}
+            onClose={() => {
+              return setUserMenuOpened(false);
+            }}
+            onOpen={() => {
+              return setUserMenuOpened(true);
+            }}
             withinPortal
           >
             <Menu.Target>
@@ -62,7 +68,7 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
                 <Group spacing={7}>
                   <Avatar
                     // src={user.image}
-                    // alt={user.name}
+                    alt={user?.name}
                     radius='xl'
                     size={20}
                   />

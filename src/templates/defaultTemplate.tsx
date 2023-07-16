@@ -1,5 +1,4 @@
 import { Container } from '@mantine/core';
-import React from 'react';
 import { type FC, type ReactNode } from 'react';
 
 import { HeaderTabs } from '../components/header/header';

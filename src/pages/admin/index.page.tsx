@@ -4,7 +4,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { auth, db } from '../../../firebase/firebase';
 import { DefaultTemplate } from '../../templates/defaultTemplate';
@@ -17,7 +17,7 @@ const Admin: NextPage = () => {
   useEffect(() => {
     (async () => {
       if (!auth.currentUser) return;
-      const ret = await auth.currentUser.getIdToken(true);
+      // const ret = await auth.currentUser.getIdToken(true);
       // console.log(idToken);
       // await auth.currentUser.reload();
       const idTokenResult = await auth.currentUser.getIdTokenResult();
@@ -40,7 +40,7 @@ const Admin: NextPage = () => {
     // const idToken = await auth.currentUser.getIdTokenResult();
     // console.log(idToken.claims);
     // 伝搬
-    const ret = await auth.currentUser.getIdToken(true);
+    // const ret = await auth.currentUser.getIdToken(true);
     // console.log(idToken);
     // await auth.currentUser.reload();
     const idTokenResult = await auth.currentUser.getIdTokenResult();
