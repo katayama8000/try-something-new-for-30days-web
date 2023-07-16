@@ -1,10 +1,7 @@
 import { firebaseAdmin } from './lib/firebaseAdmin';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // postの確認
   if (req.method !== 'POST') {
     res.status(400).json({ text: 'not supported' });
@@ -21,9 +18,7 @@ export default async function handler(
   console.log(uid);
 
   try {
-    firebaseAdmin
-      .auth()
-      .setCustomUserClaims(uid, { admin: true, premium: true });
+    firebaseAdmin.auth().setCustomUserClaims(uid, { admin: true, premium: true });
   } catch (e) {
     console.log(e);
     res.status(400).json({ text: 'error' });

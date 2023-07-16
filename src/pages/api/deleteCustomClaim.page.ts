@@ -1,10 +1,7 @@
 import { firebaseAdmin } from './lib/firebaseAdmin';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // postの確認
   if (req.method !== 'POST') {
     res.status(400).json({ text: 'not supported' });

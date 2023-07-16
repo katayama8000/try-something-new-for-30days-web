@@ -33,27 +33,22 @@ const SignIn: NextPage = () => {
   };
 
   return (
-    <Box maw={300} mx="auto">
+    <Box maw={300} mx='auto'>
       <form onSubmit={form.onSubmit((values) => handleSignin(values))}>
+        <TextInput withAsterisk label='Email' placeholder='your@email.com' {...form.getInputProps('email')} />
         <TextInput
           withAsterisk
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps('email')}
-        />
-        <TextInput
-          withAsterisk
-          label="Password"
-          placeholder="your password"
-          type="password"
+          label='Password'
+          placeholder='your password'
+          type='password'
           {...form.getInputProps('password')}
         />
 
-        <Group position="right" mt="md">
-          <Button type="submit">Submit</Button>
+        <Group position='right' mt='md'>
+          <Button type='submit'>Submit</Button>
         </Group>
       </form>
-      <Link href="sign-up">signUp</Link>
+      <Link href='sign-up'>signUp</Link>
     </Box>
   );
 };

@@ -6,10 +6,7 @@ type Data = {
   name: string;
 };
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   const db = firebaseAdmin.firestore();
   // write
   db.collection('users').add({
