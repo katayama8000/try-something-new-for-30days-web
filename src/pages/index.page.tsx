@@ -1,7 +1,6 @@
-import Head from 'next/head';
-import type { NextPage } from 'next';
-import React from 'react';
 import { Title } from '@mantine/core';
+import type { NextPage } from 'next';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (

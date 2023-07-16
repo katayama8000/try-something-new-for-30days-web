@@ -1,15 +1,13 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { MantineProvider } from '@mantine/core';
-import { auth } from '../../firebase/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import { useState } from 'react';
-import React from 'react';
-import router, { useRouter } from 'next/router';
 
-export default function App({ Component, pageProps }: AppProps) {
+import { auth } from '../../firebase/firebase';
+
+const App = ({ Component, pageProps }: AppProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const { push, isReady } = useRouter();
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       const ret = await user.getIdTokenResult();
@@ -44,4 +42,6 @@ export default function App({ Component, pageProps }: AppProps) {
       </MantineProvider>
     </>
   );
-}
+};
+
+export default App;

@@ -1,9 +1,10 @@
-import type { NextPage } from 'next';
-import { TextInput, Checkbox, Button, Group, Box } from '@mantine/core';
+import { Box,Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebase/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import type { NextPage } from 'next';
 import Link from 'next/link';
+
+import { auth } from '../../../firebase/firebase';
 
 type FormValues = {
   email: string;
@@ -18,7 +19,7 @@ const SignIn: NextPage = () => {
     },
 
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => {return (/^\S+@\S+$/.test(value) ? null : 'Invalid email')},
     },
   });
 
@@ -34,7 +35,7 @@ const SignIn: NextPage = () => {
 
   return (
     <Box maw={300} mx='auto'>
-      <form onSubmit={form.onSubmit((values) => handleSignin(values))}>
+      <form onSubmit={form.onSubmit((values) => {return handleSignin(values)})}>
         <TextInput withAsterisk label='Email' placeholder='your@email.com' {...form.getInputProps('email')} />
         <TextInput
           withAsterisk

@@ -1,7 +1,7 @@
-import React from 'react';
-import { DefaultTemplate } from '../../templates/defaultTemplate';
-import { NextPage } from 'next';
 import { Title } from '@mantine/core';
+import type { NextPage } from 'next';
+
+import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 // 必要な項目
 // タイトル

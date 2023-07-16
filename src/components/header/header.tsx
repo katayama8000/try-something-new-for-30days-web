@@ -1,40 +1,43 @@
-import { useState, useEffect } from 'react';
-import { Container, Avatar, UnstyledButton, Group, Text, Menu, Tabs, Burger, rem } from '@mantine/core';
+import { Avatar, Burger, Container, Group, Menu, rem, Tabs, Text, UnstyledButton } from '@mantine/core';
+import { MantineLogo } from '@mantine/ds';
 import { useDisclosure } from '@mantine/hooks';
 import {
-  IconLogout,
-  IconHeart,
-  IconStar,
-  IconMessage,
-  IconSettings,
-  IconPlayerPause,
-  IconTrash,
-  IconSwitchHorizontal,
   IconChevronDown,
+  IconHeart,
+  IconLogout,
+  IconMessage,
+  IconPlayerPause,
+  IconSettings,
+  IconStar,
+  IconSwitchHorizontal,
+  IconTrash,
 } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
-import { useHeaderStyles } from './useHeaderStyle';
 import { useRouter } from 'next/router';
-import { TABS } from '../../templates/defaultTemplate';
+import { useState } from 'react';
+
+import type { TABS } from '../../templates/defaultTemplate';
 import { useHeader } from '../header/useHeader';
+import { useHeaderStyles } from './useHeaderStyle';
 
 interface HeaderTabsProps {
-  user: { name: string; image: string };
   tabs: typeof TABS;
+  user: { image: string; name: string };
 }
 
-export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
-  const { classes, theme, cx } = useHeaderStyles();
+export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
+  const { classes, cx, theme } = useHeaderStyles();
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState<boolean>(false);
   const router = useRouter();
   const { pathToTab, tabToPushPath } = useHeader(router);
 
-  const items = tabs.map((tab) => (
-    <Tabs.Tab value={tab} key={tab}>
-      {tab}
-    </Tabs.Tab>
-  ));
+  const items = tabs.map((tab) => {
+    return (
+      <Tabs.Tab value={tab} key={tab}>
+        {tab}
+      </Tabs.Tab>
+    );
+  });
 
   return (
     <div className={classes.header}>
@@ -48,8 +51,12 @@ export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
             width={260}
             position='bottom-end'
             transitionProps={{ transition: 'pop-top-right' }}
-            onClose={() => setUserMenuOpened(false)}
-            onOpen={() => setUserMenuOpened(true)}
+            onClose={() => {
+              return setUserMenuOpened(false);
+            }}
+            onOpen={() => {
+              return setUserMenuOpened(true);
+            }}
             withinPortal
           >
             <Menu.Target>
@@ -61,7 +68,7 @@ export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
                 <Group spacing={7}>
                   <Avatar
                     // src={user.image}
-                    // alt={user.name}
+                    alt={user?.name}
                     radius='xl'
                     size={20}
                   />
@@ -108,8 +115,8 @@ export const HeaderTabs = ({ user, tabs }: HeaderTabsProps) => {
           }}
           classNames={{
             root: classes.tabs,
-            tabsList: classes.tabsList,
             tab: classes.tab,
+            tabsList: classes.tabsList,
           }}
         >
           <Tabs.List>{items}</Tabs.List>

@@ -1,12 +1,13 @@
 // admin顕現の人しか見れない画面
-import { auth, db } from '../../../firebase/firebase';
 import { Button } from '@mantine/core';
-import { DefaultTemplate } from '../../templates/defaultTemplate';
 import { addDoc, collection } from 'firebase/firestore';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+
+import { auth, db } from '../../../firebase/firebase';
+import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 const Admin: NextPage = () => {
   // admin権限があるかどうかを確認する
@@ -16,7 +17,7 @@ const Admin: NextPage = () => {
   useEffect(() => {
     (async () => {
       if (!auth.currentUser) return;
-      const ret = await auth.currentUser.getIdToken(true);
+      // const ret = await auth.currentUser.getIdToken(true);
       // console.log(idToken);
       // await auth.currentUser.reload();
       const idTokenResult = await auth.currentUser.getIdTokenResult();
@@ -28,8 +29,8 @@ const Admin: NextPage = () => {
   // mycollecttionというコレクションに書き込み
   const handleWrite = async () => {
     const docRef = await addDoc(collection(db, 'myCollection'), {
-      name: 'Tokyo',
       country: 'Japan',
+      name: 'Tokyo',
     });
     console.log('Document written with ID: ', docRef.id);
   };
@@ -39,7 +40,7 @@ const Admin: NextPage = () => {
     // const idToken = await auth.currentUser.getIdTokenResult();
     // console.log(idToken.claims);
     // 伝搬
-    const ret = await auth.currentUser.getIdToken(true);
+    // const ret = await auth.currentUser.getIdToken(true);
     // console.log(idToken);
     // await auth.currentUser.reload();
     const idTokenResult = await auth.currentUser.getIdTokenResult();
