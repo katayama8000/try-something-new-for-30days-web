@@ -1,0 +1,4 @@
+next.config.js
+jest.*
+firebase.*
+sentry.*
