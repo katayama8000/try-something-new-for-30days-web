@@ -1,4 +1,4 @@
-import { TABS } from '@templates/defaultTemplate';
+import { TABS } from '../../templates/defaultTemplate';
 import { type NextRouter } from 'next/router';
 
 export const useHeader = (router: NextRouter) => {

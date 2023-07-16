@@ -15,8 +15,8 @@ import {
 import { MantineLogo } from '@mantine/ds';
 import { useHeaderStyles } from './useHeaderStyle';
 import { useRouter } from 'next/router';
-import { TABS } from '@templates/defaultTemplate';
-import { useHeader } from '@components/header/useHeader';
+import { TABS } from '../../templates/defaultTemplate';
+import { useHeader } from '../header/useHeader';
 
 interface HeaderTabsProps {
   user: { name: string; image: string };
