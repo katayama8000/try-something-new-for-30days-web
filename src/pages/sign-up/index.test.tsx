@@ -4,8 +4,9 @@ import SignUp from './index.page';
 describe('SignUp', () => {
   it('should render', () => {
     expect(SignUp).toBeTruthy();
-    const { getByText } = render(<SignUp />);
-    const submitButton = getByText('Submit');
+    const { getByText, getByTestId } = render(<SignUp />);
+    // const submitButton = getByText('Submit');
+    const submitButton = getByTestId('submitButton');
     expect(submitButton).toBeTruthy();
   });
 });

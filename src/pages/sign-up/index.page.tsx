@@ -45,7 +45,9 @@ const SignUp: NextPage = () => {
         />
 
         <Group position='right' mt='md'>
-          <Button type='submit'>Submit</Button>
+          <Button type='submit' data-testid='submitButton'>
+            Submit
+          </Button>
         </Group>
       </form>
       <Link href='sign-in'>signIn</Link>
