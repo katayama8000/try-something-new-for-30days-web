@@ -4,7 +4,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import type { NextPage } from 'next';
 import Link from 'next/link';
 
-import { auth } from '../../../firebase/firebase';
+import { auth } from '../../libs/firebase';
 
 type FormValues = {
   email: string;

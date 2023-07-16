@@ -6,7 +6,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { auth } from '../../../firebase/firebase';
+import { auth } from '../../libs/firebase';
 
 const Home: NextPage = () => {
   const [uid, setUid] = useState<string>('');
