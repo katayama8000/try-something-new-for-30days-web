@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json,css}\"",
+    "format:check": "prettier --check --ignore-path .gitignore \"./**/*.{js,jsx,ts,tsx,json,css}\"",
     "test": "jest",
     "test:ci": "jest --ci --forceExit"
   },
