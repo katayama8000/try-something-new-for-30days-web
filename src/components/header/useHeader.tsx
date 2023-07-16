@@ -1,5 +1,6 @@
-import { TABS } from '../../templates/defaultTemplate';
 import { type NextRouter } from 'next/router';
+
+import type { TABS } from '../../templates/defaultTemplate';
 
 export const useHeader = (router: NextRouter) => {
   const pathToTab = (path: string): (typeof TABS)[number] => {

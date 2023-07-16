@@ -1,5 +1,5 @@
-import Head from "next/head";
 import * as Sentry from "@sentry/nextjs";
+import Head from "next/head";
 
 export default function Home() {
   return (
@@ -11,11 +11,11 @@ export default function Home() {
 
       <main
         style={{
-          minHeight: "100vh",
+          alignItems: "center",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
+          minHeight: "100vh",
         }}
       >
         <h1 style={{ fontSize: "4rem", margin: "14px 0" }}>
@@ -37,14 +37,14 @@ export default function Home() {
         <button
           type="button"
           style={{
-            padding: "12px",
-            cursor: "pointer",
             backgroundColor: "#AD6CAA",
-            borderRadius: "4px",
             border: "none",
+            borderRadius: "4px",
             color: "white",
+            cursor: "pointer",
             fontSize: "14px",
             margin: "18px",
+            padding: "12px",
           }}
           onClick={async () => {
             const transaction = Sentry.startTransaction({

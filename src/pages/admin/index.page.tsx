@@ -1,12 +1,13 @@
 // admin顕現の人しか見れない画面
-import { auth, db } from '../../../firebase/firebase';
 import { Button } from '@mantine/core';
-import { DefaultTemplate } from '../../templates/defaultTemplate';
 import { addDoc, collection } from 'firebase/firestore';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+
+import { auth, db } from '../../../firebase/firebase';
+import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 const Admin: NextPage = () => {
   // admin権限があるかどうかを確認する
@@ -28,8 +29,8 @@ const Admin: NextPage = () => {
   // mycollecttionというコレクションに書き込み
   const handleWrite = async () => {
     const docRef = await addDoc(collection(db, 'myCollection'), {
-      name: 'Tokyo',
       country: 'Japan',
+      name: 'Tokyo',
     });
     console.log('Document written with ID: ', docRef.id);
   };

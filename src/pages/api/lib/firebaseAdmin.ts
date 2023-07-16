@@ -1,6 +1,5 @@
-import admin from 'firebase-admin';
-
 import type { ServiceAccount } from 'firebase-admin';
+import admin from 'firebase-admin';
 
 const serviceAccount = require('key.json') as ServiceAccount;
 

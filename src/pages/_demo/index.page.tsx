@@ -1,12 +1,12 @@
-import Head from 'next/head';
 import { Button, Group } from '@mantine/core';
-import axios from 'axios';
-import { auth } from '../../../firebase/firebase';
-import type { NextPage } from 'next';
-import { useState } from 'react';
-import Link from 'next/link';
-import React from 'react';
 import * as sentry from '@sentry/nextjs';
+import axios from 'axios';
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import React, { useState } from 'react';
+
+import { auth } from '../../../firebase/firebase';
 
 const Home: NextPage = () => {
   const [uid, setUid] = useState<string>('');

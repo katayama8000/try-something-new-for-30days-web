@@ -1,5 +1,6 @@
-import { firebaseAdmin } from './lib/firebaseAdmin';
 import type { NextApiRequest, NextApiResponse } from 'next';
+
+import { firebaseAdmin } from './lib/firebaseAdmin';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   // postの確認
