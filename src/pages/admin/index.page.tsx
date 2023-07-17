@@ -7,24 +7,23 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { auth, db } from '../../libs/firebase';
-import { userAtom } from '../../state/user.state';
+import { db } from '../../libs/firebase';
+import { isAdminAtom, userAtom } from '../../state/user.state';
 import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 const Admin: NextPage = () => {
   const [user, _] = useAtom(userAtom);
-  // const [isAdmin] = useAtom(isAdminAtom);
-  // console.log({ isAdmin });
+  const [isAdminState] = useAtom(isAdminAtom);
   // admin権限があるかどうかを確認する
   // なければリダイレクト
   const [isAdmin, setIsAdmin] = useState<boolean>(false);
   useEffect(() => {
     (async () => {
-      if (!auth.currentUser) return;
-      await auth.currentUser.getIdToken(true);
-      await auth.currentUser.reload();
-      const idTokenResult = await auth.currentUser.getIdTokenResult();
-      !!idTokenResult.claims.admin ? setIsAdmin(true) : setIsAdmin(false);
+      if (!user) return;
+      await user.getIdToken(true);
+      await user.reload();
+      const idTokenResult = await user.getIdTokenResult();
+      setIsAdmin(!!idTokenResult.claims.admin);
     })();
   }, []);
 
@@ -38,14 +37,11 @@ const Admin: NextPage = () => {
   };
 
   const handleCheckCustomClaims = async () => {
-    if (!auth.currentUser) return;
-    // const idToken = await auth.currentUser.getIdTokenResult();
-    // console.log(idToken.claims);
+    if (!user) return;
     // 伝搬
-    await auth.currentUser.getIdToken(true);
-    // console.log(idToken);
-    // await auth.currentUser.reload();
-    const idTokenResult = await auth.currentUser.getIdTokenResult();
+    await user.getIdToken(true);
+    await user.reload();
+    const idTokenResult = await user.getIdTokenResult();
     !!idTokenResult.claims.admin ? console.log('admin') : console.log('no admin');
   };
 
@@ -72,6 +68,7 @@ const Admin: NextPage = () => {
       <DefaultTemplate>
         <div>
           <h1>no admin</h1>
+          <h2>{isAdminState ? 'isAdminAtom: true' : 'isAdminAtom: false'}</h2>
           <Link href='/'>home</Link>
           <Button onClick={handleSetCustomClaim}>set custom claims</Button>
           <Button onClick={handleCheckCustomClaims}>check custom claims</Button>
@@ -82,10 +79,11 @@ const Admin: NextPage = () => {
   return (
     <DefaultTemplate>
       <h1>admin</h1>
+      <h2>{isAdminState ? 'isAdminAtom: true' : 'isAdminAtom: false'}</h2>
       <Link href='/'>home</Link>
+      <Button onClick={handledeleteCustomClaims}>delete</Button>
       <Button onClick={handleCheckCustomClaims}>check custom claims</Button>
       <Button onClick={handleWrite}>add</Button>
-      <Button onClick={handledeleteCustomClaims}>delete</Button>
     </DefaultTemplate>
   );
 };

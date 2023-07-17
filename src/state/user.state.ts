@@ -2,6 +2,7 @@ import type { User } from 'firebase/auth';
 import { atom } from 'jotai';
 
 export const userAtom = atom<User | null>(null);
+
 export const isAdminAtom = atom<Promise<boolean>>(async (get) => {
   const user = get(userAtom);
   if (!user) return false;
