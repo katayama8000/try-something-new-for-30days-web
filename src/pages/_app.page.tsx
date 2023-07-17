@@ -1,17 +1,18 @@
 import { MantineProvider } from '@mantine/core';
-import type { User } from 'firebase/auth';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useAtom } from 'jotai';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 import { auth } from '../libs/firebase';
+import { userAtom } from '../state/user.state';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [user, setUser] = useState<User | null>(null);
   const { isReady, push } = useRouter();
+  const [user, setUser] = useAtom(userAtom);
 
   // NOTICE: クイックフィックスの通り、pushを依存配列に入れると無限ループになる
   useEffect(() => {
@@ -26,9 +27,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       // await user.getIdToken(true);
       // console.log(ret.claims.admin);
       // setTheme(!!ret.claims.admin ? 'dark' : 'light');
+      console.log('There is a user!!!!!!!!!!!!!!!');
       setTheme('dark');
       // サーバーサイドでカスタムクレームを設定する
-      console.log('There is a user!!!!!!!!!!!!!!!');
       // User is signed in
       setUser(user);
     } else {
