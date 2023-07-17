@@ -11,29 +11,30 @@ import { userAtom } from '../state/user.state';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const { isReady, push } = useRouter();
+  const { isReady } = useRouter();
   const [user, setUser] = useAtom(userAtom);
 
   // NOTICE: クイックフィックスの通り、pushを依存配列に入れると無限ループになる
   useEffect(() => {
     if (!isReady) return;
-    user ? push('/home') : push('/sign-in');
+    // user ? push('/home') : push('/sign-in');
+    // if (!user) push('/sign-in');
   }, [isReady, user]);
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
-      console.log({ user });
+      // console.log({ user });
       // const ret = await user.getIdTokenResult();
       // await user.getIdToken(true);
       // console.log(ret.claims.admin);
       // setTheme(!!ret.claims.admin ? 'dark' : 'light');
-      console.log('There is a user!!!!!!!!!!!!!!!');
+      // console.log('There is a user!!!!!!!!!!!!!!!');
       setTheme('dark');
       // サーバーサイドでカスタムクレームを設定する
       // User is signed in
       setUser(user);
     } else {
-      console.log('no user');
+      // console.log('no user');
       setTheme('light');
       setUser(null);
     }
