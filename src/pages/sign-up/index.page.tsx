@@ -25,9 +25,9 @@ const SignUp: NextPage = () => {
     },
   });
 
-  const handleSignup = async (data: FormValues): Promise<void> => {
+  const handleSignup = async ({ email, password }: FormValues): Promise<void> => {
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      await createUserWithEmailAndPassword(auth, email, password);
       console.log('signed up');
     } catch (error) {
       console.log(error);
