@@ -1,8 +1,12 @@
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import type { UserCredential } from 'firebase/auth';
 import * as FirebaseAuth from 'firebase/auth';
 
 import SignIn from './index.page';
+
+jest.mock('next/router', () => {
+  return { useRouter: jest.fn() };
+}); // モック関数を作成
 
 jest.mock('firebase/auth');
 
@@ -15,6 +19,14 @@ describe('SignIn', () => {
 
   test('submitしたらサインインされること', () => {
     jest.spyOn(FirebaseAuth, 'signInWithEmailAndPassword').mockResolvedValue({} as unknown as UserCredential);
+    // const mockRouterPush = jest.fn().mockReturnValue(Promise.resolve());
+    // jest.spyOn(NextRouter, 'useRouter').mockReturnValue({
+    //   push: mockRouterPush as unknown,
+    // } as ReturnType<(typeof NextRouter)['useRouter']>);
+    const mockRouter = {
+      push: jest.fn(),
+    };
+
     const { getByPlaceholderText, getByText } = render(<SignIn />);
     const submitButton = getByText('Submit');
     expect(submitButton).toBeTruthy();
@@ -35,5 +47,9 @@ describe('SignIn', () => {
     fireEvent.click(submitButton);
     // サインインされること
     expect(FirebaseAuth.signInWithEmailAndPassword).toHaveBeenCalledTimes(1);
+    // ホーム画面に遷移すること
+    waitFor(() => {
+      return expect(mockRouter.push).toHaveBeenCalledWith('/home');
+    });
   });
 });
