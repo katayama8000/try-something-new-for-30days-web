@@ -3,6 +3,7 @@ import { atom } from 'jotai';
 
 export const userAtom = atom<User | null>(null);
 
+// customClaiimsが変更されても動かない
 export const isAdminAtom = atom<Promise<boolean>>(async (get) => {
   const user = get(userAtom);
   if (!user) return false;
@@ -13,5 +14,3 @@ export const isAdminAtom = atom<Promise<boolean>>(async (get) => {
   console.log({ idTokenResult });
   return !!idTokenResult.claims.admin;
 });
-
-console.log({ userAtom });

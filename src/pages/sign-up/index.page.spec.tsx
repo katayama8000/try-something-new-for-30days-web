@@ -5,6 +5,7 @@ import * as FirebaseAuth from 'firebase/auth';
 import SignUp from './index.page';
 
 jest.mock('firebase/auth');
+
 describe('SignUp', () => {
   test('レンダリングされること', () => {
     expect(SignUp).toBeTruthy();
@@ -32,7 +33,7 @@ describe('SignUp', () => {
     });
     // submitボタンを押す
     fireEvent.click(submitButton);
-    // サインアップされること
     expect(FirebaseAuth.createUserWithEmailAndPassword).toHaveBeenCalledTimes(1);
+    // ホーム画面に遷移すること
   });
 });
