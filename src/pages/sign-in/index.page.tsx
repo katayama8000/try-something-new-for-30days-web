@@ -25,9 +25,9 @@ const SignIn: NextPage = () => {
     },
   });
 
-  const handleSignin = async (data: FormValues): Promise<void> => {
+  const handleSignin = async ({ email, password }: FormValues): Promise<void> => {
     try {
-      await signInWithEmailAndPassword(auth, data.email, data.password);
+      await signInWithEmailAndPassword(auth, email, password);
       console.log('signed in');
     } catch (error) {
       console.log(error);
