@@ -5,29 +5,28 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useAtom } from 'jotai';
 import type { NextPage } from 'next';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import { auth, db } from '../../libs/firebase';
-import { isAdminAtom, userAtom } from '../../state/user.state';
+import { userAtom } from '../../state/user.state';
 import { DefaultTemplate } from '../../templates/defaultTemplate';
 
 const Admin: NextPage = () => {
   const [user, _] = useAtom(userAtom);
-  const [isAdmin] = useAtom(isAdminAtom);
-  console.log({ isAdmin });
+  // const [isAdmin] = useAtom(isAdminAtom);
+  // console.log({ isAdmin });
   // admin権限があるかどうかを確認する
   // なければリダイレクト
-  // const [isAdmin, setIsAdmin] = useState<boolean>(false);
-  // useEffect(() => {
-  //   (async () => {
-  //     if (!auth.currentUser) return;
-  //     // const ret = await auth.currentUser.getIdToken(true);
-  //     // console.log(idToken);
-  //     // await auth.currentUser.reload();
-  //     const idTokenResult = await auth.currentUser.getIdTokenResult();
-  //     console.log('wwww', idTokenResult.claims);
-  //     !!idTokenResult.claims.admin ? setIsAdmin(true) : setIsAdmin(true);
-  //   })();
-  // }, []);
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
+  useEffect(() => {
+    (async () => {
+      if (!auth.currentUser) return;
+      await auth.currentUser.getIdToken(true);
+      await auth.currentUser.reload();
+      const idTokenResult = await auth.currentUser.getIdTokenResult();
+      !!idTokenResult.claims.admin ? setIsAdmin(true) : setIsAdmin(false);
+    })();
+  }, []);
 
   // mycollecttionというコレクションに書き込み
   const handleWrite = async () => {
