@@ -54,11 +54,9 @@ const Home: NextPage = () => {
 
   const handleCheckCustomClaims = async () => {
     if (!auth.currentUser) return;
-    // const idToken = await auth.currentUser.getIdTokenResult();
-    // console.log(idToken.claims);
     // 伝搬
-    // const ret = await auth.currentUser.getIdToken(true);
-    // console.log(idToken);
+    await auth.currentUser.getIdToken(true);
+    console.log(idToken);
     // await auth.currentUser.reload();
     const idTokenResult = await auth.currentUser.getIdTokenResult();
     console.log(idTokenResult.claims);

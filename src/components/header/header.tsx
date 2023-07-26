@@ -12,9 +12,11 @@ import {
   IconSwitchHorizontal,
   IconTrash,
 } from '@tabler/icons-react';
+import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
+import { auth } from '../../libs/firebase';
 import type { TABS } from '../../templates/defaultTemplate';
 import { useHeader } from '../header/useHeader';
 import { useHeaderStyles } from './useHeaderStyle';
@@ -30,6 +32,15 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
   const [userMenuOpened, setUserMenuOpened] = useState<boolean>(false);
   const router = useRouter();
   const { pathToTab, tabToPushPath } = useHeader(router);
+  const handleLogout = async (): Promise<void> => {
+    try {
+      await signOut(auth);
+      console.log('signed out');
+    } catch (error) {
+      console.log(error);
+      throw new Error("Couldn't sign out");
+    }
+  };
 
   const items = tabs.map((tab) => {
     return (
@@ -66,12 +77,7 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
                 })}
               >
                 <Group spacing={7}>
-                  <Avatar
-                    // src={user.image}
-                    alt={user?.name}
-                    radius='xl'
-                    size={20}
-                  />
+                  <Avatar src={user?.image} alt={user?.name} radius='xl' size={20} />
                   <Text weight={500} size='sm' sx={{ lineHeight: 1 }} mr={3}>
                     {/* {user.name} */}
                   </Text>
@@ -93,7 +99,9 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
               <Menu.Label>Settings</Menu.Label>
               <Menu.Item icon={<IconSettings size='0.9rem' stroke={1.5} />}>Account settings</Menu.Item>
               <Menu.Item icon={<IconSwitchHorizontal size='0.9rem' stroke={1.5} />}>Change account</Menu.Item>
-              <Menu.Item icon={<IconLogout size='0.9rem' stroke={1.5} />}>Logout</Menu.Item>
+              <Menu.Item icon={<IconLogout size='0.9rem' stroke={1.5} />} onClick={handleLogout}>
+                Logout
+              </Menu.Item>
 
               <Menu.Divider />
 

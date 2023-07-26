@@ -15,6 +15,10 @@ describe('SignIn', () => {
 
   test('submitしたらサインインされること', () => {
     jest.spyOn(FirebaseAuth, 'signInWithEmailAndPassword').mockResolvedValue({} as unknown as UserCredential);
+    // const mockRouterPush = jest.fn().mockReturnValue(Promise.resolve());
+    // jest.spyOn(NextRouter, 'useRouter').mockReturnValue({
+    //   push: mockRouterPush as unknown,
+    // } as ReturnType<(typeof NextRouter)['useRouter']>);
     const { getByPlaceholderText, getByText } = render(<SignIn />);
     const submitButton = getByText('Submit');
     expect(submitButton).toBeTruthy();
@@ -35,5 +39,6 @@ describe('SignIn', () => {
     fireEvent.click(submitButton);
     // サインインされること
     expect(FirebaseAuth.signInWithEmailAndPassword).toHaveBeenCalledTimes(1);
+    // ホーム画面に遷移すること
   });
 });
