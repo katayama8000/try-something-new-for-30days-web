@@ -18,8 +18,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const uid = req.body.uid as string;
   console.log(uid);
 
+  const kind = req.body.kind as string | undefined;
+  // TODO
+
+  const claims = {
+    user: true,
+  };
+
   try {
-    firebaseAdmin.auth().setCustomUserClaims(uid, { admin: true, premium: true });
+    firebaseAdmin.auth().setCustomUserClaims(uid, claims);
   } catch (e) {
     console.log(e);
     res.status(400).json({ text: 'error' });
