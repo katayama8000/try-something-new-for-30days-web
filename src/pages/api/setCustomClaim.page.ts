@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log(uid);
 
   try {
-    firebaseAdmin.auth().setCustomUserClaims(uid, { admin: true, premium: true });
+    firebaseAdmin.auth().setCustomUserClaims(uid, { user: true });
   } catch (e) {
     console.log(e);
     res.status(400).json({ text: 'error' });
