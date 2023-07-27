@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const uid = req.body.uid as string;
   console.log(uid);
 
-  const kind = req.body.kind as string | undefined;
+  // const kind = req.body.kind as string | undefined;
   // TODO
 
   const claims = {
