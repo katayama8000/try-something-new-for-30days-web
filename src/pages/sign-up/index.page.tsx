@@ -1,11 +1,9 @@
 import { Box, Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import axios from 'axios';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import type { NextPage } from 'next';
 import Link from 'next/link';
-
-import { auth } from '../../libs/firebase';
 
 type FormValues = {
   email: string;
@@ -27,6 +25,7 @@ const SignUp: NextPage = () => {
   });
 
   const handleSignup = async ({ email, password }: FormValues): Promise<void> => {
+    const auth = getAuth();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       if (!auth.currentUser) return;
