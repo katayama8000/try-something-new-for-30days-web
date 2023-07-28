@@ -41,7 +41,7 @@ const Admin: NextPage = () => {
     await user.getIdToken(true);
     await user.reload();
     const idTokenResult = await user.getIdTokenResult();
-    !!idTokenResult.claims.admin ? console.log('admin') : console.log('no admin');
+    console.log(idTokenResult.claims);
   };
 
   const handledeleteCustomClaims = async () => {
@@ -62,25 +62,33 @@ const Admin: NextPage = () => {
     console.log(response);
   };
 
-  if (!isAdmin)
-    return (
-      <DefaultTemplate>
-        <div>
-          <h1>no admin</h1>
-          <Link href='/'>home</Link>
-          <Button onClick={handleSetCustomClaim}>set custom claims</Button>
-          <Button onClick={handleCheckCustomClaims}>check custom claims</Button>
-          <Button onClick={handleWrite}>add</Button>
-        </div>
-      </DefaultTemplate>
-    );
+  const turnToPremiun = async () => {
+    const uid = user?.uid;
+    console.log(uid);
+    const response = await axios.post<{ uid: string }>('/api/setCustomClaim', {
+      kind: 'Premium',
+      uid,
+    });
+    console.log(response);
+  };
+
   return (
     <DefaultTemplate>
-      <h1>admin</h1>
-      <Link href='/'>home</Link>
-      <Button onClick={handledeleteCustomClaims}>delete</Button>
+      {isAdmin ? (
+        <>
+          <h1>admin</h1>
+          <Button onClick={handledeleteCustomClaims}>delete</Button>
+        </>
+      ) : (
+        <>
+          <h1>no admin</h1>
+          <Button onClick={handleSetCustomClaim}>set custom claims</Button>
+        </>
+      )}
+      <Button onClick={turnToPremiun}>turn to Premiun</Button>
       <Button onClick={handleCheckCustomClaims}>check custom claims</Button>
       <Button onClick={handleWrite}>add</Button>
+      <Link href='/'>home</Link>
     </DefaultTemplate>
   );
 };
