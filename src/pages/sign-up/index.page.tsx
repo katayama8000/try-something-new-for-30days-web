@@ -1,10 +1,9 @@
 import { Box, Button, Group, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import axios from 'axios';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import type { NextPage } from 'next';
 import Link from 'next/link';
-
-import { auth } from '../../libs/firebase';
 
 type FormValues = {
   email: string;
@@ -26,8 +25,15 @@ const SignUp: NextPage = () => {
   });
 
   const handleSignup = async ({ email, password }: FormValues): Promise<void> => {
+    const auth = getAuth();
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      if (!auth.currentUser) return;
+      const uid = auth.currentUser.uid;
+      const response = await axios.post<{ uid: string }>('/api/deleteCustomClaim', {
+        uid,
+      });
+      console.log({ response });
       console.log('signed up');
     } catch (error) {
       console.log(error);

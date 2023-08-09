@@ -12,26 +12,31 @@ import {
   IconSwitchHorizontal,
   IconTrash,
 } from '@tabler/icons-react';
+import type { ParsedToken } from 'firebase/auth';
 import { signOut } from 'firebase/auth';
+import { useAtom } from 'jotai';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { auth } from '../../libs/firebase';
+import { userAtom } from '../../state/user.state';
 import type { TABS } from '../../templates/defaultTemplate';
 import { useHeader } from '../header/useHeader';
 import { useHeaderStyles } from './useHeaderStyle';
 
 interface HeaderTabsProps {
+  reUser: { image: string; name: string };
   tabs: typeof TABS;
-  user: { image: string; name: string };
 }
 
-export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
+export const HeaderTabs = ({ reUser, tabs }: HeaderTabsProps) => {
   const { classes, cx, theme } = useHeaderStyles();
   const [opened, { toggle }] = useDisclosure(false);
   const [userMenuOpened, setUserMenuOpened] = useState<boolean>(false);
   const router = useRouter();
   const { pathToTab, tabToPushPath } = useHeader(router);
+  const [user, _] = useAtom(userAtom);
+  const [userKind, setUserKind] = useState<ParsedToken | null>(null);
   const handleLogout = async (): Promise<void> => {
     try {
       await signOut(auth);
@@ -41,6 +46,19 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
       throw new Error("Couldn't sign out");
     }
   };
+
+  useEffect(() => {
+    (async () => {
+      if (!user) return;
+      // 伝搬
+      await user.getIdToken(true);
+      await user.reload();
+      const idTokenResult = await user.getIdTokenResult();
+      const claims = idTokenResult.claims;
+      console.log(claims);
+      setUserKind(claims);
+    })();
+  }, [user]);
 
   const items = tabs.map((tab) => {
     return (
@@ -77,7 +95,7 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
                 })}
               >
                 <Group spacing={7}>
-                  <Avatar src={user?.image} alt={user?.name} radius='xl' size={20} />
+                  <Avatar src={reUser?.image} alt={reUser?.name} radius='xl' size={20} />
                   <Text weight={500} size='sm' sx={{ lineHeight: 1 }} mr={3}>
                     {/* {user.name} */}
                   </Text>
@@ -86,6 +104,11 @@ export const HeaderTabs = ({ tabs, user }: HeaderTabsProps) => {
               </UnstyledButton>
             </Menu.Target>
             <Menu.Dropdown>
+              {userKind && userKind.kind === 'Premium' && (
+                <Menu.Item icon={<IconHeart size='0.9rem' color={theme.colors.red[6]} stroke={1.5} />}>
+                  premium user
+                </Menu.Item>
+              )}
               <Menu.Item icon={<IconHeart size='0.9rem' color={theme.colors.red[6]} stroke={1.5} />}>
                 Liked posts
               </Menu.Item>

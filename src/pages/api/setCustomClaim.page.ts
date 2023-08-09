@@ -8,18 +8,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     res.status(400).json({ text: 'not supported' });
     return;
   }
+  const { kind, uid } = req.body as { kind: string; uid: string };
+  console.log(uid);
 
   // uidがpostのbodyに含まれているか確認
-  if (!req.body.uid) {
+  if (!uid) {
     res.status(400).json({ text: 'uid is required' });
     return;
   }
 
-  const uid = req.body.uid as string;
-  console.log(uid);
+  const claims = {
+    kind,
+  };
 
   try {
-    firebaseAdmin.auth().setCustomUserClaims(uid, { admin: true, premium: true });
+    firebaseAdmin.auth().setCustomUserClaims(uid, claims);
   } catch (e) {
     console.log(e);
     res.status(400).json({ text: 'error' });

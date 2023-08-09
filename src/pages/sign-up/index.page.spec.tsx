@@ -1,10 +1,12 @@
 import { fireEvent, render } from '@testing-library/react';
-import type { UserCredential } from 'firebase/auth';
+import axios from 'axios';
+import { type Auth, type UserCredential } from 'firebase/auth';
 import * as FirebaseAuth from 'firebase/auth';
 
 import SignUp from './index.page';
 
 jest.mock('firebase/auth');
+jest.mock('axios');
 
 describe('SignUp', () => {
   test('レンダリングされること', () => {
@@ -15,6 +17,8 @@ describe('SignUp', () => {
 
   test('submitしたらサインアップされること', () => {
     jest.spyOn(FirebaseAuth, 'createUserWithEmailAndPassword').mockResolvedValue({} as unknown as UserCredential);
+    jest.spyOn(FirebaseAuth, 'getAuth').mockReturnValue({} as unknown as Auth);
+    jest.spyOn(axios, 'post').mockResolvedValue({});
     const { getByPlaceholderText, getByText } = render(<SignUp />);
     const submitButton = getByText('Submit');
     expect(submitButton).toBeTruthy();

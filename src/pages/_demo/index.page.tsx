@@ -81,6 +81,16 @@ const Home: NextPage = () => {
     throw new Error('error!!!!!!');
   };
 
+  const addPremium = async () => {
+    if (!auth.currentUser) return;
+    const uid = auth.currentUser.uid;
+    const response = await axios.post<{ uid: string }>('/api/setCustomClaim', {
+      kind: 'premium',
+      uid: uid,
+    });
+    console.log(response);
+  };
+
   return (
     <>
       <Head>
@@ -104,6 +114,7 @@ const Home: NextPage = () => {
           <Button onClick={handleGetUserIdToken}>getUserIdToken</Button>
           <Button onClick={handleGetUserInfo}>getUserInfo</Button>
           <Button onClick={handleCheckCustomClaims}>checkCustomClaims</Button>
+          <Button onClick={addPremium}>プレミアムアカウント権限</Button>
           <Link href={'sign-in'}>signIn</Link>
           <Link href={'admin'}>admin</Link>
           <Button onClick={handleLogout}>logout</Button>
