@@ -28,7 +28,7 @@
     "dayjs": "^1.11.10",
     "firebase": "^10.5.2",
     "firebase-admin": "^11.11.0",
-    "jotai": "^2.5.0",
+    "jotai": "^2.5.1",
     "next": "14.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0"
