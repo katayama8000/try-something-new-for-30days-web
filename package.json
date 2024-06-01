@@ -24,7 +24,7 @@
     "@mantine/prism": "^6.0.16",
     "@sentry/nextjs": "^7.112.2",
     "@tabler/icons-react": "^3.5.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "dayjs": "^1.11.11",
     "firebase": "^10.11.1",
     "firebase-admin": "^12.1.1",
