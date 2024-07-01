@@ -23,7 +23,7 @@
     "@mantine/notifications": "^7.11.0",
     "@mantine/prism": "^6.0.16",
     "@sentry/nextjs": "^8.13.0",
-    "@tabler/icons-react": "^3.5.0",
+    "@tabler/icons-react": "^3.7.0",
     "axios": "^1.7.2",
     "dayjs": "^1.11.11",
     "firebase": "^10.12.2",
