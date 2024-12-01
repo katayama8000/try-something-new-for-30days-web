@@ -26,7 +26,7 @@
     "@tabler/icons-react": "^3.21.0",
     "axios": "^1.7.8",
     "dayjs": "^1.11.13",
-    "firebase": "^11.0.1",
+    "firebase": "^11.0.2",
     "firebase-admin": "^12.7.0",
     "jotai": "^2.10.1",
     "next": "15.0.2",
