@@ -14,7 +14,7 @@
     "test:ci": "jest --ci --forceExit"
   },
   "dependencies": {
-    "@emotion/react": "^11.13.5",
+    "@emotion/react": "^11.14.0",
     "@mantine/core": "^6.0.14",
     "@mantine/dates": "^7.14.3",
     "@mantine/ds": "^6.0.16",
